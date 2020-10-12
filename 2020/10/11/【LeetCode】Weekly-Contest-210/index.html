@@ -28,7 +28,7 @@
 <meta property="og:description" content="菜狗的刷题训练正式开始啦！ 趁着上午刚做完还有点印象，赶紧来复盘一下。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-11T03:58:50.000Z">
-<meta property="article:modified_time" content="2020-10-11T11:51:37.819Z">
+<meta property="article:modified_time" content="2020-10-12T10:01:29.415Z">
 <meta property="article:author" content="JellyFishDing">
 <meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-10-11 11:58:50 / Modified: 19:51:37" itemprop="dateCreated datePublished" datetime="2020-10-11T11:58:50+08:00">2020-10-11</time>
+              <time title="Created: 2020-10-11 11:58:50" itemprop="dateCreated datePublished" datetime="2020-10-11T11:58:50+08:00">2020-10-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-12 18:01:29" itemprop="dateModified" datetime="2020-10-12T18:01:29+08:00">2020-10-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -267,7 +273,7 @@
 
 <p><strong>时间复杂度：O(n^2)</strong></p>
 <p><strong>空间复杂度：O(1)</strong></p>
-<h5 id="3-2-改进（正确的思路）"><a href="#3-2-改进（正确的思路）" class="headerlink" title="==3.2 改进（正确的思路）=="></a>==3.2 改进（正确的思路）==</h5><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/split-two-strings-to-make-palindrome/solution/jiao-huan-dao-xu-wo-men-ju-jue-fen-qing-kuang-tao-/">参考题解</a></p>
+<h5 id="3-2-改进（正确的思路）"><a href="#3-2-改进（正确的思路）" class="headerlink" title="3.2 改进（正确的思路）"></a>3.2 改进（正确的思路）</h5><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/split-two-strings-to-make-palindrome/solution/jiao-huan-dao-xu-wo-men-ju-jue-fen-qing-kuang-tao-/">参考题解</a></p>
 <p>其实想法也很直接，不过简洁了很多（而且人家代码写得还贼简洁QAQ 菜狗羡慕.jpg）。要判断Xprefix + Xsuffix是不是回文串，其实并不需要把它们真的拼接起来然后再遍历判断，只要找准对应位置，就可以直接判断。我大概碰到了一点这个思路的边边（比如有想到A的开头和B的结尾不一样就可以直接判false），但实在是太边缘了x，没能顺着想下去。总结一下思路：</p>
 <p>以Aprefix + Bsuffix为例，假设切分点为k，那么拼接后的字符串（virtual）就是<code>A1A2...AkB(k+1)B(k+2)...Bn</code>，可以分为两种情况：</p>
 <ol>
@@ -320,7 +326,10 @@
     <a href="/2020/10/03/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91The-Mythical-Man-Month-%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/" rel="prev" title="【读书笔记】The Mythical Man-Month(人月神话)">
       <i class="fa fa-chevron-left"></i> 【读书笔记】The Mythical Man-Month(人月神话)
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/12/%E3%80%90Algorithm%E3%80%91%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BF%AE%E8%BF%9C%E5%85%AE%EF%BC%8C%E5%90%BE%E5%B0%86%E4%B8%8A%E4%B8%8B%E8%80%8C%E6%B1%82%E7%B4%A2/" rel="next" title="【Algorithm】动态规划修远兮，吾将上下而求索">
+      【Algorithm】动态规划修远兮，吾将上下而求索 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -379,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%8B%AC%E5%8F%B7%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B5%8C%E5%A5%97%E6%B7%B1%E5%BA%A6%EF%BC%88-5535%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1. 括号的最大嵌套深度（#5535）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 具体思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-%E6%94%B9%E8%BF%9B"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 改进</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9C%80%E5%A4%A7%E7%BD%91%E7%BB%9C%E7%A7%A9%EF%BC%88-5536%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2. 最大网络秩（#5536）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 具体思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-%E6%94%B9%E8%BF%9B"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 改进</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2"><span class="nav-number">3.</span> <span class="nav-text">3. 分割两个字符串得到回文串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 具体思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-%E6%94%B9%E8%BF%9B%EF%BC%88%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%80%9D%E8%B7%AF%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">&#x3D;&#x3D;3.2 改进（正确的思路）&#x3D;&#x3D;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%BB%9F%E8%AE%A1%E5%AD%90%E6%A0%91%E4%B8%AD%E5%9F%8E%E5%B8%82%E4%B9%8B%E9%97%B4%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB"><span class="nav-number">4.</span> <span class="nav-text">4. 统计子树中城市之间最大距离</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 具体思路</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%8B%AC%E5%8F%B7%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B5%8C%E5%A5%97%E6%B7%B1%E5%BA%A6%EF%BC%88-5535%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1. 括号的最大嵌套深度（#5535）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 具体思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-%E6%94%B9%E8%BF%9B"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 改进</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9C%80%E5%A4%A7%E7%BD%91%E7%BB%9C%E7%A7%A9%EF%BC%88-5536%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2. 最大网络秩（#5536）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 具体思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-%E6%94%B9%E8%BF%9B"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 改进</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2"><span class="nav-number">3.</span> <span class="nav-text">3. 分割两个字符串得到回文串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 具体思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-%E6%94%B9%E8%BF%9B%EF%BC%88%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%80%9D%E8%B7%AF%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">3.2 改进（正确的思路）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%BB%9F%E8%AE%A1%E5%AD%90%E6%A0%91%E4%B8%AD%E5%9F%8E%E5%B8%82%E4%B9%8B%E9%97%B4%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB"><span class="nav-number">4.</span> <span class="nav-text">4. 统计子树中城市之间最大距离</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 具体思路</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -393,20 +402,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
