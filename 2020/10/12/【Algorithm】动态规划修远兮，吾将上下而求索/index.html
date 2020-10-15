@@ -27,11 +27,13 @@
 <meta property="og:site_name" content="JellyFishDing">
 <meta property="og:description" content="标题的意思：动态规划好xx难 正在努力尝试理解动态规划并通过做题来找到适合自己的套路，所以大概会随着做题和思考的过程不断更新这篇博客（希望真的能找到 祈祷.jpg">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/10/15/fEOBpNmgLdveK8M.png">
 <meta property="article:published_time" content="2020-10-12T09:13:15.000Z">
-<meta property="article:modified_time" content="2020-10-12T10:01:18.965Z">
+<meta property="article:modified_time" content="2020-10-15T09:19:42.904Z">
 <meta property="article:author" content="JellyFishDing">
 <meta property="article:tag" content="Algorithm, LeetCode">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/15/fEOBpNmgLdveK8M.png">
 
 <link rel="canonical" href="http://example.com/2020/10/12/%E3%80%90Algorithm%E3%80%91%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BF%AE%E8%BF%9C%E5%85%AE%EF%BC%8C%E5%90%BE%E5%B0%86%E4%B8%8A%E4%B8%8B%E8%80%8C%E6%B1%82%E7%B4%A2/">
 
@@ -184,10 +186,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-10-12 17:13:15 / Modified: 18:01:18" itemprop="dateCreated datePublished" datetime="2020-10-12T17:13:15+08:00">2020-10-12</time>
+              <time title="Created: 2020-10-12 17:13:15" itemprop="dateCreated datePublished" datetime="2020-10-12T17:13:15+08:00">2020-10-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-15 17:19:42" itemprop="dateModified" datetime="2020-10-15T17:19:42+08:00">2020-10-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -213,7 +221,8 @@
 <p>正在努力尝试理解动态规划并通过做题来找到适合自己的套路，所以大概会随着做题和思考的过程不断更新这篇博客（希望真的能找到 祈祷.jpg</p>
 <a id="more"></a>
 
-<h4 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h4><h5 id="1-1-动态规划的本质"><a href="#1-1-动态规划的本质" class="headerlink" title="1.1 动态规划的本质"></a>1.1 动态规划的本质</h5><ol>
+<h4 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h4><p>（是真的最基础的动态规划）</p>
+<h5 id="1-1-动态规划的本质"><a href="#1-1-动态规划的本质" class="headerlink" title="1.1 动态规划的本质"></a>1.1 动态规划的本质</h5><ol>
 <li><p>重点</p>
 <ul>
 <li><p>大问题 ===简化===&gt; （规模更小的）子问题</p>
@@ -257,6 +266,85 @@
 </ol>
 <p>除此之外还有一些步骤，这里就不细说了，网上一搜一大把。动态规划的思考过程很明确，随便搜一搜都会有博客告诉你第一步第二步第三步啥的，但一做到题就是抓瞎x。所以总结再多思考过程，还不如多做点题，量变才能产生质变。</p>
 <h4 id="2-例题解析"><a href="#2-例题解析" class="headerlink" title="2. 例题解析"></a>2. 例题解析</h4><h5 id="2-1-最长上升子序列"><a href="#2-1-最长上升子序列" class="headerlink" title="2.1 最长上升子序列"></a>2.1 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">最长上升子序列</a></h5><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/dong-tai-gui-hua-er-fen-cha-zhao-tan-xin-suan-fa-p/">参考题解</a></p>
+<p>这题想到用动态规划不难，毕竟很符合最优子结构，于是就开始定义状态和找转移方程。</p>
+<ol>
+<li>定义状态<ul>
+<li>首先想到用题目目标定义状态：<code>dp[i]</code>即到位置<code>i</code>为止时的最长上升子序列的长度<ul>
+<li>但正如题解中所说，定义了这个状态之后会发现状态转移方程很难找</li>
+<li>考虑其它定义状态的方法</li>
+</ul>
+</li>
+<li>考虑到在这道题中，对于位置<code>i</code>，“是否选中此处的数”其实是一种隐含的状态，所以<code>dp[i]</code>定义如下：<ul>
+<li><code>dp[i]</code>：以<code>nums[i]</code>结尾的最长子序列的长度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>状态转移<ul>
+<li>当前状态<code>dp[i]</code>应该是“前面任意一个上升序列+<code>nums[i]</code>作为结尾”的情况中长度最大的<ul>
+<li>隐含体现出<code>nums[i]</code>应该大于任意一个上升序列的结尾<code>nums[j]</code></li>
+</ul>
+</li>
+<li>所以要对于<code>i</code>前面所有的情况都遍历一遍</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lengthOfLIS = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!nums || nums.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> len = nums.length;</span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(len);</span><br><span class="line">    dp.fill(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[j] &lt; nums[i])  dp[i] = <span class="built_in">Math</span>.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, dp);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h5 id="2-2-最长回文子序列"><a href="#2-2-最长回文子序列" class="headerlink" title="2.2 最长回文子序列"></a>2.2 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/">最长回文子序列</a></h5><p>（有题解说这是典型的<strong>区间DP</strong>，但由于我是个从0开始的菜狗，所以先简单分析一波，不管什么区间DP啥的）</p>
+<ol>
+<li><p>定义状态</p>
+<ul>
+<li><code>dp[i][j]</code>：从<code>i</code>到<code>j</code>（即字符串<code>s[i : j]</code>）的最长回文子序列的长度</li>
+</ul>
+</li>
+<li><p>状态转移</p>
+<ul>
+<li>考虑怎么从子问题转换到<code>dp[i][j]</code></li>
+<li>因为回文串本身的性质，要想通过在两端增加字符的方式增加回文串的长度，那么必定要同时在首尾增加同样的字符，那么判断的重点就显而易见了，就是<code>s[i] ?= s[j]</code><ul>
+<li>如果<code>s[i] = s[j]</code>，<code>dp[i][j] = dp[i+1][j-1] + 2</code></li>
+<li>如果<code>s[i] != s[j]</code>，<code>dp[i][j] = max(dp[i+1][j], dp[i][j-1])</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>注意点</p>
+<ul>
+<li><p>这题很重要的一点是，由于<code>(i, j)</code>依赖的是<code>i+1</code>或者<code>j-1</code>，显然从小往大递推是不可行的，因为计算到某个状态时，它依赖的子问题还没有被解决，所以只能从大向小，即：</p>
+<p><img src="https://i.loli.net/2020/10/15/fEOBpNmgLdveK8M.png" alt="dp.png"></p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> longestPalindromeSubseq = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> n = s.length;</span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(n);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// init</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        dp[i] = <span class="keyword">new</span> <span class="built_in">Array</span>(n);</span><br><span class="line">        dp[i].fill(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// pay attention to the start of i</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        dp[i][i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] === s[j])  </span><br><span class="line">                dp[i][j] = dp[i+<span class="number">1</span>][j<span class="number">-1</span>] + <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">else</span>    </span><br><span class="line">                dp[i][j] = <span class="built_in">Math</span>.max(dp[i+<span class="number">1</span>][j], dp[i][j<span class="number">-1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][n<span class="number">-1</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-3-最长公共子序列"><a href="#2-3-最长公共子序列" class="headerlink" title="2.3 最长公共子序列"></a>2.3 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">最长公共子序列</a></h5><p>这次有两个字符串辣！所以使用二维dp就比较好理解。</p>
+<ol>
+<li>定义状态<ul>
+<li><code>dp[i][j]</code>：字符串A的前<code>i</code>个字符组成的子串和字符串B的前<code>j</code>个字符组成的子串的最长公共子序列长度</li>
+</ul>
+</li>
+<li>状态转移<ul>
+<li>和2.2类似，显然是通过<code>A[i]</code>和<code>B[j]</code>是否相同来转移的<ul>
+<li>如果<code>A[i] = B[j]</code>，<code>dp[i][j] = dp[i-1][j-1] + 1</code></li>
+<li>如果<code>A[i] != B[j]</code>，<code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>注意点<ul>
+<li>这题需要一个哨兵列和哨兵行，因为在计算<code>[0][0]</code>时需要一个虚拟的初始值</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> longestCommonSubsequence = <span class="function"><span class="keyword">function</span>(<span class="params">text1, text2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> len1 = text1.length,</span><br><span class="line">        len2 = text2.length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(len1+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= len1; i++) &#123;</span><br><span class="line">        dp[i] = <span class="keyword">new</span> <span class="built_in">Array</span>(len2+<span class="number">1</span>);</span><br><span class="line">        dp[i].fill(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= len1; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt;= len2; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (text1[i<span class="number">-1</span>] === text2[j<span class="number">-1</span>])  dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span>    dp[i][j] = <span class="built_in">Math</span>.max(dp[i<span class="number">-1</span>][j], dp[i][j<span class="number">-1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp[len1][len2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -337,7 +425,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">1. 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 动态规划的本质</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E9%A2%98%E7%9B%AE%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 什么样的题目可以用动态规划</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-%E6%80%8E%E6%A0%B7%E6%80%9D%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 怎样思考</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BE%8B%E9%A2%98%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">2. 例题解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 最长上升子序列</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">1. 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 动态规划的本质</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E9%A2%98%E7%9B%AE%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 什么样的题目可以用动态规划</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-%E6%80%8E%E6%A0%B7%E6%80%9D%E8%80%83"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 怎样思考</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BE%8B%E9%A2%98%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">2. 例题解析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 最长上升子序列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 最长回文子序列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 最长公共子序列</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
