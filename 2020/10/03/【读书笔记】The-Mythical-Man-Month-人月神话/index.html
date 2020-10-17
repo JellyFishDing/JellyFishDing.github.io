@@ -28,8 +28,14 @@
 <meta property="og:description" content="写在前面本篇博客持续更新至读完《人月神话》，每次读完一个章节会在章节阅读部分更新对应章节的内容总结，全部读完之后会有一个完整总结（or感悟？）。 由于一不小心买成了影印版，全英文读起来有点费力，很多地方理解起来都会有些难度，所以只能尽最大努力理解其意思了，但肯定会有疏漏。不过幸好这本只是用来培养一下自己阅读专业书籍的习惯，是一个大写的起点0，要求也就没那么高了。 最后老希望工程一下：希望我能真的读">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2020/10/03/f1EOgjs5QKkrVwp.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/17/egsIMljbAzEiLDY.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/17/nN4hq3X8EZDrSxl.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/17/vaI9Xutk4NwMCTL.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/17/tVXeFsAQqbpm58R.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/17/nN4hq3X8EZDrSxl.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/17/tVXeFsAQqbpm58R.png">
 <meta property="article:published_time" content="2020-10-03T10:34:16.000Z">
-<meta property="article:modified_time" content="2020-10-03T13:19:52.728Z">
+<meta property="article:modified_time" content="2020-10-17T09:25:43.651Z">
 <meta property="article:author" content="JellyFishDing">
 <meta property="article:tag" content="Reading Notes">
 <meta name="twitter:card" content="summary">
@@ -186,10 +192,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-10-03 18:34:16 / Modified: 21:19:52" itemprop="dateCreated datePublished" datetime="2020-10-03T18:34:16+08:00">2020-10-03</time>
+              <time title="Created: 2020-10-03 18:34:16" itemprop="dateCreated datePublished" datetime="2020-10-03T18:34:16+08:00">2020-10-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-17 17:25:43" itemprop="dateModified" datetime="2020-10-17T17:25:43+08:00">2020-10-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -235,6 +247,70 @@
 <p>编程能带给我们的快乐，主要来自于它是一种“创造性活动”，它让我们只是通过简单的介质（鼠标、键盘和我们的想象）就获得了一个可见的、也许前所未有的、并且是对他人有用的事物。这个创造的过程也让我们处于一种持续的学习中（always learning），因为我们做的不是简简单单的重复的工作，我们面临的问题总有不同，每一次解决问题，都会让我们学到一些新的东西。<em>“问渠哪得清如许，为有源头活水来”。</em></p>
 <p>当然，编程同样也有一些固有的（inherent）困难。计算机的严谨要求我们的开发必须完美，不能有任何一个错误的字符；工作环境和工作目标向来不在开发者的掌控之内（苦逼乙方）；我们往往需要去依赖一些别人的程序，而它们往往就很难用；创造性活动之外，编程也需要我们去做很多重复性的工作（比如找bug）；最痛苦的一点，可能投入了很多的系统还没有开发出来，新的idea新的solution就已经出来了。</p>
 <p>对于最后一点有需要解释的部分，实际情况中新的idea往往不会很快投入使用，所以一般不会面临系统没开发完成就过时的问题（事实上每一样设计在确定之后，就已经开始进入过时的状态）。我们实际面临的挑战，其实是在有限的资源里面对项目进度的把控。</p>
+<h3 id="Chapter-2-The-Mythical-Man-Month"><a href="#Chapter-2-The-Mythical-Man-Month" class="headerlink" title="Chapter 2. The Mythical Man-Month"></a>Chapter 2. The Mythical Man-Month</h3><!--2020/10/17更新-->
+
+<p>芜湖，第二章啦，和书名同名的一章&gt;w&lt;</p>
+<h5 id="阅前小知识"><a href="#阅前小知识" class="headerlink" title="阅前小知识"></a>阅前小知识</h5><p>Man-Month（人月）：人月是工作量的计量单位，是项目所有参与者工作时长的累计，是最为方便计算成本的数据。是项目管理中常用的概念。</p>
+<p>如一个项目前期投入3个人工作2个月，中间2人工作0.5月，后期1人（0.33兼职）工作3个月，那么工作量的计算就是：3人*2月+2人*0.5月+0.33*3月＝8人月。</p>
+<br/>
+
+<p>我们在团队协作共同开发一个软件系统时，面临最大也是最灾难性的问题：lack of calendar！（没有时间了.jpg</p>
+<p>这种情况往往是由于现实情况和我们的schedule没有保持一致，导致最终完成的时间也和我们预期的相差不少，一延再延，就来不及了。这主要是因为缺乏合理的进度安排，而这主要又是来自于两个方面的原因：（在这里把进度安排者简单叫做管理者）</p>
+<ol>
+<li>管理者的“盲目”乐观</li>
+<li>对“人月”的迷信</li>
+</ol>
+<h5 id="Optimism"><a href="#Optimism" class="headerlink" title="Optimism"></a>Optimism</h5><p>这其实很好理解，说管理者“盲目”乐观，是因为现实世界的<strong>不可控</strong>。我们在制定计划时往往会忽略掉很多现实因素的影响，比如一个莫名其妙怎么也解决不了的bug，而这个出bug的模块又被很多模块依赖着导致这些模块都没法正常推进了；比如单个任务确实很好完成，不会有任何delay，但是软件系统是多个任务组成的，任务之间的交互或许就会出问题。</p>
+<p>这里还需要强调的一点是，单元测试、系统测试的重要性。管理者在计划中往往会分配较少的时间给测试，但事实上测试是一件非常耗时的事情，现实中大多数项目的测试实际上花费了进度一半的时间。</p>
+<p>本书作者一般采用的进度时间划分：</p>
+<p><img src="https://i.loli.net/2020/10/17/egsIMljbAzEiLDY.png" alt="schedule.png"></p>
+<h5 id="Man-Month"><a href="#Man-Month" class="headerlink" title="Man-Month"></a>Man-Month</h5><p>就让作者来揭开“人月”的骗局！</p>
+<blockquote>
+<p>Cost does indeed vary as the product of the number of men and the number of months. Progress does not. <strong>Hence the man-month as a unit for measuring the size of a job is a dangerous and deceptive myth. It implies that men and months an interchangeable.</strong></p>
+</blockquote>
+<p>现实中的工作量衡量往往不像我们想象的那么简单，因为其中牵扯到了非常多的因素，尤其是在以“人”和“时间”为单位去衡量时更要注意，因为“人”是一个过于动态的单位，它的改变可能引起一系列的连锁反应，事情往往不会像我们所想象的那样发展。因此作者认为用“人月”来衡量工作量是危险的，因为它暗示了“人员数量和时间是可以相互替换的”。</p>
+<p>下面列举几个简单的情况说明“人月”为什么不适用。</p>
+<ol>
+<li>某个任务可以分解成独立部分给参与人员，并且人员之间互相不需要交流就可以完成<ul>
+<li>这是理想状态，也是唯一可以使用“人月”的场景，但软件开发显然不属于这一类</li>
+<li><img src="https://i.loli.net/2020/10/17/nN4hq3X8EZDrSxl.png" alt="manmonth1.png" style="zoom:50%;" /><img src="https://i.loli.net/2020/10/17/vaI9Xutk4NwMCTL.png" alt="manmonth3.png"></li>
+</ul>
+</li>
+<li>任务由于一些限制导致无法分解<ul>
+<li>那么就算增加再多的人手，需要的时间也还是要那么多</li>
+<li><img src="https://i.loli.net/2020/10/17/tVXeFsAQqbpm58R.png" alt="manmonth2.png" style="zoom:50%;"/></li>
+</ul>
+</li>
+<li>任务可以分解，但是负责不同子任务的人员之间需要简单的交流和沟通<ul>
+<li>此时增加人手确实可以起到一定的效果，但也有上限</li>
+<li><img src="https://i.loli.net/2020/10/17/nN4hq3X8EZDrSxl.png" alt="manmonth1.png" style="zoom:50%;" /></li>
+</ul>
+</li>
+<li>任务错综复杂，需要的交流和沟通非常多，而且一个子任务的人员可能需要和其它很多的子任务的人员进行沟通<ul>
+<li>最贴近现实，也是“人月”最无用的场景</li>
+<li><img src="https://i.loli.net/2020/10/17/tVXeFsAQqbpm58R.png" alt="manmonth2.png" style="zoom:50%;" />
+
+</li>
+</ul>
+</li>
+</ol>
+<p>总结起来，“人月”的有效性受“协作”的影响非常大，一旦项目中人和人之间的协作比较复杂，增加人手就不再是个缩减完成时间的好方法了。（这也就是为什么“人员数量和时间是不可相互替换的”）</p>
+<h5 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h5><p>那么遇到lack of calendar问题时（比如花了计划两倍的时间才到达项目的第一个里程碑），该怎么办呢？考虑下面三种方案：</p>
+<ol>
+<li>加人</li>
+<li>重新排进度</li>
+<li>削减任务</li>
+</ol>
+<p>破除了“人月神话”后，1显然不是一个好方法，加人的背后会有很多联动影响，比如新来的人需要培训，会加入原本的团队需要磨合，人多了那么工作显然需要重新分配……加不起加不起.jpg</p>
+<p>作者在这里简化了Brooks法则：</p>
+<blockquote>
+<p>Adding manpower to a late software project makes it later.</p>
+</blockquote>
+<p>方案2……没有固定的ddl的项目的话自然可以，重新安排，分配足够的时间去完成任务</p>
+<p>方案3很熟悉啊，就……来不及就砍需求吧x</p>
+<br/>
+
+<p>总之，缺乏合理的进度安排是项目滞后最大的原因，我们或许可以期待一下可靠的估算方式的出现，但是在那之前，先走出“人月神话”吧。</p>
 <h2 id="全书总结"><a href="#全书总结" class="headerlink" title="全书总结"></a>全书总结</h2>
     </div>
 
@@ -318,7 +394,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%A0%E8%8A%82%E9%98%85%E8%AF%BB"><span class="nav-number">2.</span> <span class="nav-text">章节阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Chapter-1-The-Tar-Pit"><span class="nav-number">2.1.</span> <span class="nav-text">Chapter 1. The Tar Pit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Introduction"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#The-Programming-Systems-Product"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">The Programming Systems Product</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#The-joys-and-woes-of-the-craft"><span class="nav-number">2.1.0.3.</span> <span class="nav-text">The joys and woes of the craft</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E4%B9%A6%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">全书总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%A0%E8%8A%82%E9%98%85%E8%AF%BB"><span class="nav-number">2.</span> <span class="nav-text">章节阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Chapter-1-The-Tar-Pit"><span class="nav-number">2.1.</span> <span class="nav-text">Chapter 1. The Tar Pit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Introduction"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#The-Programming-Systems-Product"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">The Programming Systems Product</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#The-joys-and-woes-of-the-craft"><span class="nav-number">2.1.0.3.</span> <span class="nav-text">The joys and woes of the craft</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chapter-2-The-Mythical-Man-Month"><span class="nav-number">2.2.</span> <span class="nav-text">Chapter 2. The Mythical Man-Month</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%98%85%E5%89%8D%E5%B0%8F%E7%9F%A5%E8%AF%86"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">阅前小知识</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Optimism"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">Optimism</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Man-Month"><span class="nav-number">2.2.0.3.</span> <span class="nav-text">Man-Month</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solutions"><span class="nav-number">2.2.0.4.</span> <span class="nav-text">Solutions</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E4%B9%A6%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">全书总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
