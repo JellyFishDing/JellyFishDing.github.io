@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://i2.wp.com/img-blog.csdnimg.cn/20200507015348426.png">
 <meta property="og:image" content="http://i2.wp.com/img-blog.csdnimg.cn/20200507015702406.png">
 <meta property="article:published_time" content="2021-07-01T16:03:55.000Z">
-<meta property="article:modified_time" content="2021-07-01T16:17:46.648Z">
+<meta property="article:modified_time" content="2021-07-01T16:23:42.328Z">
 <meta property="article:author" content="JellyFishDing">
 <meta property="article:tag" content="FrontEnd, Canvas">
 <meta name="twitter:card" content="summary">
@@ -189,7 +189,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-07-02 00:03:55 / Modified: 00:17:46" itemprop="dateCreated datePublished" datetime="2021-07-02T00:03:55+08:00">2021-07-02</time>
+              <time title="Created: 2021-07-02 00:03:55 / Modified: 00:23:42" itemprop="dateCreated datePublished" datetime="2021-07-02T00:03:55+08:00">2021-07-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -341,7 +341,7 @@
 <h5 id="4-2-转base64报错"><a href="#4-2-转base64报错" class="headerlink" title="4.2 转base64报错"></a>4.2 转base64报错</h5><ul>
 <li>错误内容：<code>Uncaught DOMException: Failed to execute &#39;toDataURL&#39; on &#39;HTMLCanvasElement&#39;: Tainted canvases may not be exported</code></li>
 <li>原因：<ul>
-<li>跨域问题，尽管不通过跨域就可以在canvas中使用图片，但是这种做法会被认为是污染了画布，调用<code>toDataURL</code>就会报错</li>
+<li>CORS问题，尽管不通过跨域就可以在canvas中使用图片，但是这种做法会被认为是污染了画布，调用<code>toDataURL</code>就会报错</li>
 </ul>
 </li>
 <li>解决方案：<ul>
