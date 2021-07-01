@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://i2.wp.com/img-blog.csdnimg.cn/20200507015348426.png">
 <meta property="og:image" content="http://i2.wp.com/img-blog.csdnimg.cn/20200507015702406.png">
 <meta property="article:published_time" content="2021-07-01T16:03:55.000Z">
-<meta property="article:modified_time" content="2021-07-01T16:07:14.896Z">
+<meta property="article:modified_time" content="2021-07-01T16:17:46.648Z">
 <meta property="article:author" content="JellyFishDing">
 <meta property="article:tag" content="FrontEnd, Canvas">
 <meta name="twitter:card" content="summary">
@@ -189,7 +189,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-07-02 00:03:55 / Modified: 00:07:14" itemprop="dateCreated datePublished" datetime="2021-07-02T00:03:55+08:00">2021-07-02</time>
+              <time title="Created: 2021-07-02 00:03:55 / Modified: 00:17:46" itemprop="dateCreated datePublished" datetime="2021-07-02T00:03:55+08:00">2021-07-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,8 +217,6 @@
 <li>生成Base64</li>
 </ul>
 <a id="more"></a>
-
-<br />
 
 <br />
 
@@ -284,8 +282,6 @@
 </ol>
 <br />
 
-<br />
-
 <h4 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3. 代码实现"></a>3. 代码实现</h4><ul>
 <li><p>实现内容1：在canvas画布上添加一张图片，并利用已知数据给图片标上文字</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span>&gt;</span>您的浏览器不支持canvas<span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> draw = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> imgurl = <span class="string">&quot;xxx&quot;</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> img = <span class="keyword">new</span> Image();</span></span><br><span class="line">        img.src = imgurl;</span><br><span class="line"><span class="javascript">        <span class="comment">// img.setAttribute(&quot;crossOrigin&quot;, &quot;Anonymous&quot;); B</span></span></span><br><span class="line"><span class="javascript">        img.onload = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">          ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, width, height);	<span class="comment">// 在canvas上绘制图片</span></span></span><br><span class="line"><span class="javascript">          ctx.font=<span class="string">&quot;30px Arial&quot;</span>;</span></span><br><span class="line"><span class="javascript">		      ctx.fillText(<span class="string">&quot;Hello World&quot;</span>,<span class="number">10</span>,<span class="number">50</span>);</span></span><br><span class="line"><span class="javascript">          <span class="comment">// A</span></span></span><br><span class="line"><span class="javascript">        &#125; <span class="comment">// 为了图片能够正常展示，将绘制过程作为图片load成功后的回调</span></span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      draw();</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -298,8 +294,6 @@
 
 </li>
 </ul>
-<br />
-
 <br />
 
 <h4 id="4-问题与解决方案"><a href="#4-问题与解决方案" class="headerlink" title="4. 问题与解决方案"></a>4. 问题与解决方案</h4><h5 id="4-1-图片模糊问题"><a href="#4-1-图片模糊问题" class="headerlink" title="4.1 图片模糊问题"></a>4.1 图片模糊问题</h5><ul>
@@ -320,9 +314,9 @@
 </li>
 <li><p>下图每一个方格是一个像素：</p>
 </li>
-<li><img src="http://i2.wp.com/img-blog.csdnimg.cn/20200507015348426.png" style="zoom:50%; float:left" />
+<li><img src="http://i2.wp.com/img-blog.csdnimg.cn/20200507015348426.png" style="zoom:50%;" />
 
-<img src="http://i2.wp.com/img-blog.csdnimg.cn/20200507015702406.png" style="zoom:50%; float:left;" />
+<img src="http://i2.wp.com/img-blog.csdnimg.cn/20200507015702406.png" style="zoom:50%;" />
 </li>
 <li><p>因此一张图片被绘制到canvas中时，许多地方是被绘制了两次的，所以会显得模糊</p>
 </li>
@@ -336,8 +330,8 @@
 </li>
 <li><p>以<code>window.devicePixelRatio = 2</code>为例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 200px; height: 100px;&quot;</span>&gt;</span>您的浏览器不支持canvas<span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> draw = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> imgurl = <span class="string">&quot;xxx&quot;</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> img = <span class="keyword">new</span> Image();</span></span><br><span class="line">        img.src = imgurl;</span><br><span class="line"><span class="javascript">        <span class="comment">// img.setAttribute(&quot;crossOrigin&quot;, &quot;Anonymous&quot;); B</span></span></span><br><span class="line"><span class="javascript">        img.onload = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">          ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, <span class="number">400</span>, <span class="number">200</span>);	<span class="comment">// 在canvas上绘制图片</span></span></span><br><span class="line"><span class="javascript">          ctx.font=<span class="string">&quot;30px Arial&quot;</span>;</span></span><br><span class="line"><span class="javascript">		      ctx.fillText(<span class="string">&quot;Hello World&quot;</span>,<span class="number">10</span>,<span class="number">50</span>);</span></span><br><span class="line"><span class="javascript">          <span class="comment">// A</span></span></span><br><span class="line"><span class="javascript">        &#125; <span class="comment">// 为了图片能够正常展示，将绘制过程作为图片load成功后的回调</span></span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      draw();</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>附赠获取</p>
+
+
 </li>
 </ul>
 </li>
@@ -355,8 +349,6 @@
 </ul>
 </li>
 </ul>
-<br />
-
 <br />
 
 <h4 id="5-参考"><a href="#5-参考" class="headerlink" title="5. 参考"></a>5. 参考</h4><ol>
