@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. 需求背景 给定几何图片url，在图片指定位置上标注端点 生成Base64">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Canvas入门 - 使用Canvas绘制图片并添加文字">
+<meta property="og:url" content="http://example.com/2021/07/02/Canvas%E5%85%A5%E9%97%A8%20-%20%E4%BD%BF%E7%94%A8Canvas%E7%BB%98%E5%88%B6%E5%9B%BE%E7%89%87%E5%B9%B6%E6%B7%BB%E5%8A%A0%E6%96%87%E5%AD%97/index.html">
+<meta property="og:site_name" content="JellyFishDing">
+<meta property="og:description" content="1. 需求背景 给定几何图片url，在图片指定位置上标注端点 生成Base64">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://i2.wp.com/img-blog.csdnimg.cn/20200507015348426.png">
+<meta property="og:image" content="http://i2.wp.com/img-blog.csdnimg.cn/20200507015702406.png">
+<meta property="article:published_time" content="2021-07-01T16:03:55.000Z">
+<meta property="article:modified_time" content="2021-07-01T16:07:14.896Z">
+<meta property="article:author" content="JellyFishDing">
+<meta property="article:tag" content="FrontEnd, Canvas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://i2.wp.com/img-blog.csdnimg.cn/20200507015348426.png">
+
+<link rel="canonical" href="http://example.com/2021/07/02/Canvas%E5%85%A5%E9%97%A8%20-%20%E4%BD%BF%E7%94%A8Canvas%E7%BB%98%E5%88%B6%E5%9B%BE%E7%89%87%E5%B9%B6%E6%B7%BB%E5%8A%A0%E6%96%87%E5%AD%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Canvas入门 - 使用Canvas绘制图片并添加文字 | JellyFishDing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JellyFishDing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep calm and carry on</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/02/Canvas%E5%85%A5%E9%97%A8%20-%20%E4%BD%BF%E7%94%A8Canvas%E7%BB%98%E5%88%B6%E5%9B%BE%E7%89%87%E5%B9%B6%E6%B7%BB%E5%8A%A0%E6%96%87%E5%AD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JellyFishDing">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JellyFishDing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Canvas入门 - 使用Canvas绘制图片并添加文字
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-07-02 00:03:55 / Modified: 00:07:14" itemprop="dateCreated datePublished" datetime="2021-07-02T00:03:55+08:00">2021-07-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FrontEnd/" itemprop="url" rel="index"><span itemprop="name">FrontEnd</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="1-需求背景"><a href="#1-需求背景" class="headerlink" title="1. 需求背景"></a>1. 需求背景</h4><ul>
+<li>给定几何图片url，在图片指定位置上标注端点</li>
+<li>生成Base64</li>
+</ul>
+<a id="more"></a>
+
+<br />
+
+<br />
+
+<h4 id="2-基础知识"><a href="#2-基础知识" class="headerlink" title="2. 基础知识"></a>2. 基础知识</h4><h5 id="2-1-Canvas"><a href="#2-1-Canvas" class="headerlink" title="2.1 Canvas"></a>2.1 Canvas</h5><ol>
+<li><p>概念：HTML5新增的标签，用于绘制图形</p>
+<ul>
+<li><code>&lt;canvas&gt;</code>标签只是容器，内容图形必须通过脚本（通常是js）来完成绘制</li>
+</ul>
+</li>
+<li><p>简单实例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200&quot;</span> <span class="attr">id</span>=<span class="string">&quot;my-canvas&quot;</span> <span class="attr">style</span>=<span class="string">&quot;border:1px solid #000000;&quot;</span>&gt;</span></span><br><span class="line">    浏览器不支持canvas时显示这一段文字</span><br><span class="line">  <span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  	<span class="comment">// 利用js绘制图形</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;my-canvas&quot;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 创建context对象</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 绘制一个红色的矩形</span></span></span><br><span class="line"><span class="javascript">    ctx.fillStyle=<span class="string">&quot;#FF0000&quot;</span>;</span></span><br><span class="line">		ctx.fillRect(0,0,150,75);</span><br><span class="line"><span class="javascript">    <span class="comment">// 添加hello world文字</span></span></span><br><span class="line"><span class="javascript">    ctx.font=<span class="string">&quot;30px Arial&quot;</span>;</span></span><br><span class="line"><span class="javascript">		ctx.fillText(<span class="string">&quot;Hello World&quot;</span>,<span class="number">10</span>,<span class="number">50</span>);</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 绘制一条对角线</span></span></span><br><span class="line">    ctx.moveTo(0, 0);</span><br><span class="line">		ctx.lineTo(200, 200);</span><br><span class="line">		ctx.stroke();</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>坐标系</p>
+<ul>
+<li>画布左上角：开始坐标 <code>(0, 0)</code></li>
+<li>画布右下角：结束坐标<code>(width, height)</code></li>
+<li>开始坐标向右为x轴正轴，向下为y轴正轴</li>
+</ul>
+</li>
+</ol>
+<br />
+
+<h5 id="2-2-Base64"><a href="#2-2-Base64" class="headerlink" title="2.2 Base64"></a>2.2 Base64</h5><ol>
+<li><p>概念：一种<strong>编码方式</strong>，用64个可打印字符来表示一组二进制数据</p>
+<blockquote>
+<p>In programming, Base64 is a group of binary-to-text encoding schemes that represent binary data (more specifically, a sequence of 8-bit bytes) in an ASCII string format by translating the data into a radix-64 representation.</p>
+<p>——Wikipedia</p>
+</blockquote>
+<ul>
+<li>目的：将不可见字符转化为可见字符，可用于http传输</li>
+<li>由于log{2}{64} = 6，即64个字符可以用来表示6位二进制数的所有情况，因此在base64中，每6位为一个单元，对应一个可打印字符</li>
+</ul>
+</li>
+<li><p>索引表</p>
+<ul>
+<li><code>A-Z、a-z、0-9</code>对应0-61</li>
+<li><code>+</code>对应62</li>
+<li><code>/</code>对应63</li>
+</ul>
+</li>
+<li><p>补位</p>
+<ul>
+<li>1个字节 = 8位，3个字节（24位）才可整除6，因此二进制字节数必须是3的倍数<ul>
+<li>每3个字节可以转化为4个base64单位（6位为一个单位）</li>
+</ul>
+</li>
+<li>若无法整除，二进制用0补足直至是3的倍数，并在base64编码后加<code>=</code>来代表补足的字节数<ul>
+<li>一个等号表示补了2个0</li>
+<li>两个等号表示补了4个0</li>
+<li>⬆️只有这两种情况</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>应用</p>
+<ul>
+<li>支持MIME类型的内容传输<ul>
+<li>包括<strong>图片</strong>、声音等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br />
+
+<br />
+
+<h4 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3. 代码实现"></a>3. 代码实现</h4><ul>
+<li><p>实现内容1：在canvas画布上添加一张图片，并利用已知数据给图片标上文字</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;200&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100&quot;</span>&gt;</span>您的浏览器不支持canvas<span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> draw = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> imgurl = <span class="string">&quot;xxx&quot;</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> img = <span class="keyword">new</span> Image();</span></span><br><span class="line">        img.src = imgurl;</span><br><span class="line"><span class="javascript">        <span class="comment">// img.setAttribute(&quot;crossOrigin&quot;, &quot;Anonymous&quot;); B</span></span></span><br><span class="line"><span class="javascript">        img.onload = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">          ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, width, height);	<span class="comment">// 在canvas上绘制图片</span></span></span><br><span class="line"><span class="javascript">          ctx.font=<span class="string">&quot;30px Arial&quot;</span>;</span></span><br><span class="line"><span class="javascript">		      ctx.fillText(<span class="string">&quot;Hello World&quot;</span>,<span class="number">10</span>,<span class="number">50</span>);</span></span><br><span class="line"><span class="javascript">          <span class="comment">// A</span></span></span><br><span class="line"><span class="javascript">        &#125; <span class="comment">// 为了图片能够正常展示，将绘制过程作为图片load成功后的回调</span></span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      draw();</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现内容2：将绘制好的canvas转为base64</p>
+<ul>
+<li>主要是为了后续增加放大、缩小、拖拽等功能</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只需在绘制完成后（即上一段代码的注释A处）添加一行代码，并将B处的注释去掉，即可得到base64</span></span><br><span class="line"><span class="keyword">const</span> base64 = canvas.toDataURL(<span class="string">&quot;image/png&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<br />
+
+<br />
+
+<h4 id="4-问题与解决方案"><a href="#4-问题与解决方案" class="headerlink" title="4. 问题与解决方案"></a>4. 问题与解决方案</h4><h5 id="4-1-图片模糊问题"><a href="#4-1-图片模糊问题" class="headerlink" title="4.1 图片模糊问题"></a>4.1 图片模糊问题</h5><ul>
+<li><p>问题：原图是一张高清大图，绘制到canvas上时是缩小了图片，结果反而变得极其模糊</p>
+</li>
+<li><p>可能原因：</p>
+<ul>
+<li><p>原因一：设备像素比问题</p>
+<ul>
+<li>不同设备的设备像素比（<code>window.devicePixelRatio</code>）不同</li>
+<li>设备像素比 = 当前显示设备的物理像素 / CSS像素</li>
+<li>设<code>window.devicePixelRatio = n</code>，那么实际绘制时就会以实际的n个像素点来描绘图片的一个像素，此时canvas在屏幕上相当于占了n倍空间，即将图片放大了n倍，自然模糊</li>
+</ul>
+</li>
+<li><p>原因二：canvas绘制原理（<a target="_blank" rel="noopener" href="https://www.codenong.com/cs105964081/%EF%BC%89">https://www.codenong.com/cs105964081/）</a></p>
+<ul>
+<li><p>并非一个像素一个像素去填，而是以两个像素的中线为起点，并向两侧各延伸半个像素，但是由于0.5px不允许出现，所以canvas会继续延伸直至将左右两个像素都填满</p>
+</li>
+<li><p>下图每一个方格是一个像素：</p>
+</li>
+<li><img src="http://i2.wp.com/img-blog.csdnimg.cn/20200507015348426.png" style="zoom:50%; float:left" />
+
+<img src="http://i2.wp.com/img-blog.csdnimg.cn/20200507015702406.png" style="zoom:50%; float:left;" />
+</li>
+<li><p>因此一张图片被绘制到canvas中时，许多地方是被绘制了两次的，所以会显得模糊</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>解决方案：</p>
+<ul>
+<li><p>获取设备像素比，将canvas放大到相同倍数，再利用css将其缩小到想要的大小</p>
+</li>
+<li><p>以<code>window.devicePixelRatio = 2</code>为例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;200&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 200px; height: 100px;&quot;</span>&gt;</span>您的浏览器不支持canvas<span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> draw = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> imgurl = <span class="string">&quot;xxx&quot;</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> img = <span class="keyword">new</span> Image();</span></span><br><span class="line">        img.src = imgurl;</span><br><span class="line"><span class="javascript">        <span class="comment">// img.setAttribute(&quot;crossOrigin&quot;, &quot;Anonymous&quot;); B</span></span></span><br><span class="line"><span class="javascript">        img.onload = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">          ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, <span class="number">400</span>, <span class="number">200</span>);	<span class="comment">// 在canvas上绘制图片</span></span></span><br><span class="line"><span class="javascript">          ctx.font=<span class="string">&quot;30px Arial&quot;</span>;</span></span><br><span class="line"><span class="javascript">		      ctx.fillText(<span class="string">&quot;Hello World&quot;</span>,<span class="number">10</span>,<span class="number">50</span>);</span></span><br><span class="line"><span class="javascript">          <span class="comment">// A</span></span></span><br><span class="line"><span class="javascript">        &#125; <span class="comment">// 为了图片能够正常展示，将绘制过程作为图片load成功后的回调</span></span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      draw();</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>附赠获取</p>
+</li>
+</ul>
+</li>
+</ul>
+<br />
+
+<h5 id="4-2-转base64报错"><a href="#4-2-转base64报错" class="headerlink" title="4.2 转base64报错"></a>4.2 转base64报错</h5><ul>
+<li>错误内容：<code>Uncaught DOMException: Failed to execute &#39;toDataURL&#39; on &#39;HTMLCanvasElement&#39;: Tainted canvases may not be exported</code></li>
+<li>原因：<ul>
+<li>跨域问题，尽管不通过跨域就可以在canvas中使用图片，但是这种做法会被认为是污染了画布，调用<code>toDataURL</code>就会报错</li>
+</ul>
+</li>
+<li>解决方案：<ul>
+<li><code>img.setAttribute(&quot;crossOrigin&quot;, &quot;Anonymous&quot;);</code></li>
+</ul>
+</li>
+</ul>
+<br />
+
+<br />
+
+<h4 id="5-参考"><a href="#5-参考" class="headerlink" title="5. 参考"></a>5. 参考</h4><ol>
+<li>Canvas：<a target="_blank" rel="noopener" href="https://www.w3schools.com/html/html5_canvas.asp">https://www.w3schools.com/html/html5_canvas.asp</a></li>
+<li>基本操作：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44953227/article/details/106241227">https://blog.csdn.net/weixin_44953227/article/details/106241227</a></li>
+<li>模糊问题<ul>
+<li><a target="_blank" rel="noopener" href="https://www.codenong.com/cs105964081/">https://www.codenong.com/cs105964081/</a> （最终采用）</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/mafan121/article/details/81625915">https://blog.csdn.net/mafan121/article/details/81625915</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30352645/article/details/95463939">https://blog.csdn.net/weixin_30352645/article/details/95463939</a></li>
+</ul>
+</li>
+<li>转Base64：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903802202832903">https://juejin.cn/post/6844903802202832903</a></li>
+<li>Canvas转Base64报错：<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6fe06667b748">https://www.jianshu.com/p/6fe06667b748</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image">https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image</a></li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FrontEnd-Canvas/" rel="tag"># FrontEnd, Canvas</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/30/%E3%80%90%E7%94%B5%E5%AD%90%E6%89%8B%E6%9C%AD%E3%80%912020%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="prev" title="【电子手札】2020年度总结">
+      <i class="fa fa-chevron-left"></i> 【电子手札】2020年度总结
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">1. 需求背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">2. 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-Canvas"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Canvas</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-Base64"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Base64</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">3. 代码实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">4.</span> <span class="nav-text">4. 问题与解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E5%9B%BE%E7%89%87%E6%A8%A1%E7%B3%8A%E9%97%AE%E9%A2%98"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 图片模糊问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-%E8%BD%ACbase64%E6%8A%A5%E9%94%99"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 转base64报错</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">5. 参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">JellyFishDing</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JellyFishDing</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
